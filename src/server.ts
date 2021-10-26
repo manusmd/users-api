@@ -3,6 +3,12 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
+const users = ['Leon', 'Dennis', 'David'];
+
+app.delete('/api/users/:name', (request, response) => {
+  response.send('DELETE exists');
+});
+
 app.get('/api/users/:name', (request, response) => {
   const isNameKnow = users.includes(request.params.name);
   if (isNameKnow) {
@@ -13,7 +19,6 @@ app.get('/api/users/:name', (request, response) => {
 });
 
 app.get('/api/users', (_request, response) => {
-  const users = [{ name: 'Leon' }, { name: 'Dennis' }, { name: 'David' }];
   response.send(users);
 });
 
