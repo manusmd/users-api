@@ -13,6 +13,20 @@ const users = [
   { name: 'Anke', username: 'anke9657', password: 'aeofynij' },
 ];
 
+app.post('/api/login', (request, response) => {
+  const loginUser = request.body;
+  const user = users.find(
+    (user) =>
+      user.username === loginUser.username &&
+      user.password === loginUser.password
+  );
+  if (user) {
+    response.status(202).send('User can login');
+  } else {
+    response.status(401).send('Check username and password');
+  }
+});
+
 app.post('/api/users', (request, response) => {
   const newUser = request.body;
   if (
